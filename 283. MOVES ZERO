@@ -40,7 +40,7 @@ class Solution {
 }
 
 
-//Bruteforce
+//Bruteforce Approach
 
 class Solution {
     public void moveZeroes(int[] nums) {
