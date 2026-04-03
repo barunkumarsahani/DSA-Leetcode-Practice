@@ -25,12 +25,12 @@ class Solution {
             mid = (low + high) / 2;
 
             if(nums[low] <= nums[high]) {
-                ans = Math.min(nums[low],ans);;
+                ans = Math.min(nums[low],ans);
                 break;
             }
 
             if ( nums[low] <= nums[mid]) {
-                ans = Math.min(nums[low],ans);;
+                ans = Math.min(nums[low],ans);
                 low = mid + 1;
             } else {
                 ans = Math.min(nums[mid],ans);
