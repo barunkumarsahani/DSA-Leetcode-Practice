@@ -36,3 +36,38 @@ class Solution {
         return ans.toArray(new int[ans.size()][]);
     }
 }
+
+
+
+
+//Optimal Approach     (T.C : O(NLOGN+N) ,S.C. O(N))
+
+import java.util.*;
+
+class Solution {
+    public int[][] merge(int[][] arr) {
+
+        int n = arr.length;
+
+        // Sort intervals based on start time
+        Arrays.sort(arr, (a, b) -> Integer.compare(a[0], b[0]));
+
+        List<int[]> ans = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+
+            // If result is empty OR no overlap
+            if (ans.isEmpty() || arr[i][0] > ans.get(ans.size() - 1)[1]) {
+                ans.add(arr[i]);
+            } 
+            // Overlapping case → merge
+            else {
+                ans.get(ans.size() - 1)[1] = 
+                    Math.max(ans.get(ans.size() - 1)[1], arr[i][1]);
+            }
+        }
+
+        // Convert List → 2D array
+        return ans.toArray(new int[ans.size()][]);
+    }
+}
