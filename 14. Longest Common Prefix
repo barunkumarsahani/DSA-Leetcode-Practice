@@ -15,3 +15,60 @@ class Solution {
         return prefix;
     }
 }
+
+
+
+
+
+//Better Approach    (T.C : O(N * M) , S.C : O(1) )
+
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        if (strs.length == 0) return "";
+
+        for (int i = 0; i < strs[0].length(); i++) {
+            char ch = strs[0].charAt(i);
+
+            for (int j = 1; j < strs.length; j++) {
+                if (i >= strs[j].length() || strs[j].charAt(i) != ch) {
+                    return strs[0].substring(0, i);
+                }
+            }
+        }
+        return strs[0];
+    }
+}
+
+
+//Optimal Striver Approach     (T.C :O(N log N * M) , S.C : O(M) )
+
+
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        // To store the result prefix
+        StringBuilder ans = new StringBuilder();
+
+        // Sort the array of strings
+        Arrays.sort(strs);
+
+        // First string after sorting
+        String first = strs[0];
+
+        // Last string after sorting
+        String last = strs[strs.length - 1];
+
+        // Compare characters of the first and last strings
+        for (int i = 0; i < Math.min(first.length(), last.length()); i++) {
+            // Stop if characters are different
+            if (first.charAt(i) != last.charAt(i)) {
+                return ans.toString();
+            }
+
+            // Add matching character to result
+            ans.append(first.charAt(i));
+        }
+
+        // Return the final common prefix
+        return ans.toString();
+    }
+}
