@@ -105,33 +105,26 @@ class Solution {
 
 //Optimal Approach     (T.C : O(n) , S.C : O(1) )
 
-import java.util.HashMap;
 
 class Solution {
     public boolean isIsomorphic(String s, String t) {
-
-        HashMap<Character, Character> map1 = new HashMap<>();
-        HashMap<Character, Character> map2 = new HashMap<>();
-
-        for (int i = 0; i < s.length(); i++) {
-            char c1 = s.charAt(i);
-            char c2 = t.charAt(i);
-
-            // Check mapping s -> t
-            if (map1.containsKey(c1)) {
-                if (map1.get(c1) != c2) return false;
-            } else {
-                map1.put(c1, c2);
-            }
-
-            // Check mapping t -> s
-            if (map2.containsKey(c2)) {
-                if (map2.get(c2) != c1) return false;
-            } else {
-                map2.put(c2, c1);
-            }
-        }
-
-        return true;
+ // Arrays to track last seen positions of characters in s and t
+          int[] m1 = new int[256], m2 = new int[256];
+  
+          // Get length of the strings
+          int n = s.length();
+  
+          // Loop through all characters in the strings
+          for (int i = 0; i < n; ++i) {
+              // Return false if mapping is inconsistent
+              if (m1[s.charAt(i)] != m2[t.charAt(i)]) return false;
+  
+              // Update last seen index for both characters
+              m1[s.charAt(i)] = i + 1;
+              m2[t.charAt(i)] = i + 1;
+          }
+  
+          // Return true if all character mappings are consistent
+          return true;
     }
 }
