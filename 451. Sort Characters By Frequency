@@ -1,5 +1,5 @@
 //BruteForce Approach   (T.C : O(n^2) , S.C : O(1) )
-
+LOgic : count frequency , find max and then create/ build result
 class Solution {
     public String frequencySort(String s) {
         String result = "";
