@@ -1,0 +1,39 @@
+//BruteForce Approach   (T.C : O(n^2) , S.C : O(1) )
+
+class Solution {
+    public String frequencySort(String s) {
+        String result = "";
+
+        int[] freq = new int[128];
+
+        // count frequency
+        for (char c : s.toCharArray()) {
+            freq[c]++;
+        }
+
+        while (true) {
+            int max = 0;
+            int index = -1;
+
+            // find max frequency char
+            for (int i = 0; i < 128; i++) {
+                if (freq[i] > max) {
+                    max = freq[i];
+                    index = i;
+                }
+            }
+
+            if (max == 0) break;
+
+            // append character max times
+            for (int i = 0; i < max; i++) {
+                result += (char) index;
+            }
+
+            freq[index] = 0; // remove it
+        }
+
+        return result;
+    }
+}
+
