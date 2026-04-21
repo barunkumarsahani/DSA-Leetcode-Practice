@@ -7,22 +7,33 @@ Else → add
 
 Code :
 
-public int romanToInt(String s) {
-    Map<Character, Integer> map = new HashMap<>();
-    map.put('I', 1); map.put('V', 5); map.put('X', 10);
-    map.put('L', 50); map.put('C', 100);
-    map.put('D', 500); map.put('M', 1000);
+class Solution {
+    public int romanToInt(String s) {
+        HashMap<Character, Integer> map = new HashMap<>();
 
-    int sum = 0;
+        // Create a map of Roman numerals to integers
+        map.put('I', 1);
+        map.put('V', 5); 
+        map.put('X', 10);
+        map.put('L', 50);
+        map.put('C', 100);
+        map.put('D', 500);
+        map.put('M', 1000);
 
-    for (int i = 0; i < s.length(); i++) {
-        int curr = map.get(s.charAt(i));
+        int sum = 0;
 
-        if (i < s.length() - 1 && curr < map.get(s.charAt(i + 1))) {
-            sum -= curr;
-        } else {
-            sum += curr;
+        // Loop through the string, except the last character
+        for (int i = 0; i < s.length() - 1; i++) {
+            
+            // Subtract if current value is less than next value
+
+            if (map.get(s.charAt(i)) < map.get(s.charAt(i + 1))) {
+                sum -= map.get(s.charAt(i));
+            } else {   // Otherwise, add the value
+                sum += map.get(s.charAt(i));
+            }
         }
+        return sum+map.get(s.charAt(s.length()-1));      // Add the value of the last character  L -> R
     }
-    return sum;
 }
+
