@@ -1,9 +1,9 @@
 //Better Approach (T.C : O(N) , S.C: O(N) )
+
 logic : Convert chars to values
 Traverse left → right
 If current < next → subtract
 Else → add
-
 
 Code :
 
@@ -37,3 +37,54 @@ class Solution {
     }
 }
 
+
+
+
+
+
+//Optimized Approach     (T.C : O(N) , S.C: O(N) )
+logic : Traverse right → left
+Keep track of previous value
+If current < previous → subtract
+Else → add
+
+
+Code :
+
+class Solution {
+    public int romanToInt(String s) {
+
+        // Map to store Roman symbol → integer value
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+    
+        map.put('I', 1);   // 1
+        map.put('V', 5);   // 5
+        map.put('X', 10);  // 10
+        map.put('L', 50);  // 50
+        map.put('C', 100); // 100
+        map.put('D', 500); // 500
+        map.put('M', 1000);// 1000
+
+        // Initialize result with last character value
+        // (always added because nothing after it)
+        int result = map.get(s.charAt(s.length()-1));
+
+        // Traverse from second last → beginning (right → left)
+        for(int i = s.length() - 2; i >= 0; i--) {
+
+            // If current value < next value → subtract
+            // Example: IV → 1 < 5 → subtract 1
+            if (map.get(s.charAt(i)) < map.get(s.charAt(i + 1))) {
+                result -= map.get(s.charAt(i));
+            } 
+            // Else → add normally
+            // Example: VI → 5 > 1 → add 5
+            else {
+                result += map.get(s.charAt(i));
+            }
+        }
+
+        // Final computed integer value
+        return result;
+    }
+}
