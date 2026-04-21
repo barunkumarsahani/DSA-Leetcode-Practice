@@ -12,6 +12,7 @@ class Solution {
                 st.push('(');
                 count++;
                 max = Math.max(max,count);
+
             }else if(s.charAt(i) == ')'){
                 st.pop();
                 count--;
@@ -32,13 +33,18 @@ class Solution {
 
 class Solution {
     public int maxDepth(String s) {
+
         int p = 0; 
         int ans = 0; 
+
         for (char ch : s.toCharArray()) {
+
             // Increase depth on open parenthesis
             if (ch == '(') p++;
+
             // Decrease depth on close parenthesis
             else if (ch == ')') p--;
+
             // Update maximum depth encountered
             ans = Math.max(ans, p);
         }
