@@ -1,4 +1,65 @@
-//Optimized Approach  (  T.C : O(1) , S.C : O(1) )
+//Brute Force Approach      ( T.C : O(LOGN) , S.C : O(1) )
+
+
+class Solution {
+    public int minBitFlips(int start, int goal) {
+        int count = 0;
+
+        while (start > 0 || goal > 0) {
+            int bit1 = start & 1;
+            int bit2 = goal & 1;
+
+            if (bit1 != bit2) count++;
+
+                start >>= 1;
+                goal >>= 1;
+            
+        }
+
+        return count;
+    }
+}
+
+
+
+//Better Approach (Using XOR)      ( T.C : O(LOGN) , S.C : O(1) )
+
+public int minBitFlips(int start, int goal) {
+    int xor = start ^ goal;
+    int count = 0;
+
+    while (xor > 0) {
+        if ((xor & 1) == 1) count++;
+        xor >>= 1;
+    }
+
+    return count;
+}
+
+
+
+
+
+//Optimal Approach (Brian Kernighan’s Algorithm)    (Time: O(number of set bits) → ⚡ fastest
+Space: O(1))
+
+
+public int minBitFlips(int start, int goal) {
+    int xor = start ^ goal;
+    int count = 0;
+
+    while (xor != 0) {
+        xor = xor & (xor - 1);
+        count++;
+    }
+
+    return count;
+}
+
+
+
+
+//Optimized Striver Approach  (  T.C : O(1) , S.C : O(1) )
 
 
 class Solution {
@@ -24,3 +85,6 @@ class Solution {
         return count;
     }
 }
+
+
+
