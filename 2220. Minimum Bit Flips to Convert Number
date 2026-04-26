@@ -22,6 +22,8 @@ class Solution {
 
 
 
+
+
 //Better Approach (Using XOR)      ( T.C : O(LOGN) , S.C : O(1) )
 
 public int minBitFlips(int start, int goal) {
@@ -59,7 +61,8 @@ public int minBitFlips(int start, int goal) {
 
 
 
-//Optimized Striver Approach  (  T.C : O(1) , S.C : O(1) )
+
+//Optimized Striver Approach  (  T.C : O(1) , S.C : O(1)  )
 
 
 class Solution {
