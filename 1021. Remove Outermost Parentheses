@@ -22,7 +22,7 @@ class Solution {
 }
 
 
-//Better 
+//Better Approach
 
 class Solution {
     public String removeOuterParentheses(String s) {
