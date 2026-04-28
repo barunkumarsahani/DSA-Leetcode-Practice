@@ -1,4 +1,4 @@
-//BruteForce Approach   ( T.C : O(n) , S.C : O(1) )   //Time limit exceeded
+//BruteForce  Approach   ( T.C : O(n) , S.C : O(1) )   //Time limit exceeded
 
 public double myPow(double x, int n) {
     double result = 1.0;
