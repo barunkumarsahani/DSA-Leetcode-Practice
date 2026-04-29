@@ -14,7 +14,7 @@ class Solution {
 
 
 
-//Better
+//Better Approach
 
 class Solution {
     public boolean isPalindrome(String s) {
