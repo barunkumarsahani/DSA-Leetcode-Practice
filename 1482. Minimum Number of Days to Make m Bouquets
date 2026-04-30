@@ -1,0 +1,108 @@
+//Optimized Approach
+
+
+class Solution {
+    public int minDays(int[] bloomDay, int m, int k) {
+        int n = bloomDay.length;
+        
+        // Impossible case
+        if ((long)m * k > n) return -1;
+
+        int low = Integer.MAX_VALUE, high = Integer.MIN_VALUE;
+        for (int d : bloomDay) {
+            low = Math.min(low, d);
+            high = Math.max(high, d);
+        }
+
+        int ans = -1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (canMake(bloomDay, m, k, mid)) {
+                ans = mid;
+                high = mid - 1; // try smaller day
+            } else {
+                low = mid + 1;
+            }
+        }
+
+        return ans;
+    }
+
+    private boolean canMake(int[] bloomDay, int m, int k, int day) {
+        int count = 0, bouquets = 0;
+
+        for (int d : bloomDay) {
+            if (d <= day) {
+                count++;
+                if (count == k) {
+                    bouquets++;
+                    count = 0;
+                }
+            } else {
+                count = 0;
+            }
+        }
+
+
+
+//Striver Approach
+
+class Solution {
+
+    public int minDays(int[] bloomDay, int m, int k) {
+        long required = (long) m * k;
+
+        // Impossible case
+        if (required > bloomDay.length) return -1;
+
+        int minDay = Integer.MAX_VALUE;
+        int maxDay = Integer.MIN_VALUE;
+
+        // Find min & max bloom day
+        for (int d : bloomDay) {
+            minDay = Math.min(minDay, d);
+            maxDay = Math.max(maxDay, d);
+        }
+
+        int low = minDay, high = maxDay;
+        int result = -1;
+
+        // Binary Search on answer (days)
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (canMake(bloomDay, mid, m, k)) {
+                result = mid;      // possible → try smaller day
+                high = mid - 1;
+            } else {
+                low = mid + 1;    // not possible → need more days
+            }
+        }
+
+        return result;
+    }
+
+    private boolean canMake(int[] bloomDay, int day, int m, int k) {
+        int count = 0;
+        int bouquets = 0;
+
+        for (int d : bloomDay) {
+            if (d <= day) {
+                count++;
+                if (count == k) {
+                    bouquets++;
+                    count = 0;
+                }
+            } else {
+                count = 0;
+            }
+        }
+
+        return bouquets >= m;
+    }
+}
+        return bouquets >= m;
+    }
+}
